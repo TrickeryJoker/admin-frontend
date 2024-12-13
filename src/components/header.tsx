@@ -62,11 +62,11 @@ export default function Header() {
                     <NavigationMenuList>
                         <Card className="mr-1">
                             <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                                {/* 无论登录与否，始终返回到前台页面 */}
-                                <Link to={window.location.origin}>
+                                {/* 使用 window.location.origin 来动态获取当前主机名 */}
+                                <a href={window.location.origin}>
                                     <img className="h-7 mr-1" src="/dashboard/logo.svg" alt="logo" />
                                     {t("nezha")}
-                                </Link>
+                                </a>
                             </NavigationMenuLink>
                         </Card>
 
