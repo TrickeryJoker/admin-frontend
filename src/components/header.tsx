@@ -364,10 +364,12 @@ function Overview() {
             {profile && (
                 <div className="flex items-center gap-1.5">
                     <div className="flex gap-1.5 text-sm font-semibold">
-                        🫡 欢迎
+                        🫡 欢迎来自
                         {profile?.login_ip && (
-                            <p className="font-medium opacity-50">来自 {profile?.login_ip} 的指挥官 {profile?.username}。 </p>
+                            <p className="font-medium opacity-50"> {profile?.login_ip} </p>
                         )}
+                        的指挥官 {profile?.username}。
+                        <br />
                     </div>
                 </div>
             )}
