@@ -61,10 +61,15 @@ export default function Header() {
                 <NavigationMenu className="sm:max-w-full">
                     <NavigationMenuList>
                         <Card className="mr-1">
-                            <NavigationMenuLink asChild className={navigationMenuTriggerStyle() + ' !text-foreground'}>
-                                <Link to="/"><img className="h-7 mr-1" src='/dashboard/logo.svg' /> {t("nezha")}</Link>
+                            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                {/* 无论登录与否，始终返回到前台页面 */}
+                                <Link to="https://vps.jovegg.com">
+                                    <img className="h-7 mr-1" src="/dashboard/logo.svg" alt="logo" />
+                                    {t("nezha")}
+                                </Link>
                             </NavigationMenuLink>
                         </Card>
+
 
 
                         {
