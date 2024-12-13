@@ -365,19 +365,20 @@ function Overview() {
                 <div className="flex items-center gap-1.5">
                     <div className="flex gap-1.5 text-sm font-semibold">
                         🫡 欢迎来自
-                        {profile?.login_ip && (
-                            <p className="font-medium opacity-50"> {profile?.login_ip} </p>
-                        )}
+                        <p className="font-medium opacity-70">
+                            {profile?.login_ip || "星空"}
+                        </p>
                         的指挥官 {profile?.username}。
-                        <br />
                     </div>
                 </div>
             )}
             {!profile && <p className="text-sm font-semibold">{t("LoginFirst")}</p>}
             <div className="flex items-center gap-1.5">
-                <p className="text-[13px] font-medium opacity-50">{t("CurrentTime")}</p>
+                <p className="text-[13px] font-medium opacity-70">{t("CurrentTime")}</p>
                 <p className="opacity-1 text-[13px] font-medium">{timeString}</p>
             </div>
         </section>
+
+
     )
 }
