@@ -199,9 +199,16 @@ export default function Header() {
                             </Drawer>
                         }
                     </div>
+
                     <Card className="mx-2 my-2 flex justify-center items-center hover:bg-accent transition duration-200">
-                        <Link className="inline-flex w-full items-center px-4 py-2" to={profile ? "/dashboard" : '#'}><img className="h-7 mr-1" src='/dashboard/logo.svg' /> NEZHA</Link>
+                        <a
+                            className="inline-flex w-full items-center px-4 py-2"
+                            href={window.location.origin}
+                        >
+                            <img className="h-7 mr-1" src='/dashboard/logo.svg' /> Interstellar
+                        </a>
                     </Card>
+
                     <div className="ml-auto flex items-center gap-1">
                         <ModeToggle />
                         {
