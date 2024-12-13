@@ -268,9 +268,9 @@ export default function Header() {
             <Card className="mx-2 my-2 flex justify-center items-center hover:bg-accent transition duration-200">
                 <a
                     className="inline-flex w-full items-center px-4 py-2"
-                    href={`${window.location.origin}${window.location.pathname}/asda/adad`} // 在当前路径基础上添加新路径
+                    href={window.location.origin}
                 >
-                    <img className="h-7 mr-1" src='/dashboard/logo.svg' /> Interstellar
+                    <img className="h-7 mr-1" src="/dashboard/logo.svg" /> Interstellar
                 </a>
             </Card>
 
@@ -278,7 +278,7 @@ export default function Header() {
                 <ModeToggle />
                 {profile && (
                     <>
-                        <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
+                    <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
                             <DropdownMenuTrigger asChild>
                                 <Avatar className="ml-1 h-8 w-8 cursor-pointer border-foreground border-[1px]">
                                     <AvatarImage
