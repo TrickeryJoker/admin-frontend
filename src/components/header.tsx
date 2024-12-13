@@ -93,7 +93,7 @@ export default function Header() {
                                             <Avatar className="ml-1 h-8 w-8 cursor-pointer border-foreground border-[1px]">
                                                 <AvatarImage
                                                     src={
-                                                        "https://api.dicebear.com/9.x/lorelei/svg?seed=Destiny&backgroundType=gradientLinear&beard[]&beardProbability=0&earrings[]&earringsProbability=0&frecklesProbability=0&glassesProbability=0&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf"
+                                                        "https://api.dicebear.com/9.x/lorelei/svg?seed=Destiny&backgroundType=gradientLinear&beard[]&beardProbability=0&earrings[]&earringsProbability=0&frecklesProbability=0&glassesProbability=0"
                                                     }
                                                     alt={profile.username}
                                                 />
@@ -282,7 +282,7 @@ export default function Header() {
                                 <Avatar className="ml-1 h-8 w-8 cursor-pointer border-foreground border-[1px]">
                                     <AvatarImage
                                         src={
-                                            "https://api.dicebear.com/9.x/lorelei/svg?seed=Destiny&backgroundType=gradientLinear&beard[]&beardProbability=0&earrings[]&earringsProbability=0&frecklesProbability=0&glassesProbability=0&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf"
+                                            "https://api.dicebear.com/9.x/lorelei/svg?seed=Destiny&backgroundType=gradientLinear&beard[]&beardProbability=0&earrings[]&earringsProbability=0&frecklesProbability=0&glassesProbability=0"
                                         }
                                         alt={profile.username}
                                     />
@@ -364,9 +364,9 @@ function Overview() {
             {profile && (
                 <div className="flex items-center gap-1.5">
                     <div className="flex gap-1.5 text-sm font-semibold">
-                        🫡 欢迎回来，指挥官{profile?.username}。
+                        🫡 欢迎
                         {profile?.login_ip && (
-                            <p className="font-medium opacity-45">from {profile?.login_ip}</p>
+                            <p className="font-medium opacity-50">来自 {profile?.login_ip} 的指挥官 {profile?.username}。 </p>
                         )}
                     </div>
                 </div>
