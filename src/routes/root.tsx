@@ -14,7 +14,7 @@ export default function Root() {
     const settings = useSetting();
 
     useEffect(() => {
-        document.title = settings?.site_name || "哪吒监控 Nezha Monitoring";
+        document.title = settings?.site_name || "Interstellar";
     }, [settings]);
 
     return (

@@ -62,9 +62,10 @@ export default function Header() {
                     <NavigationMenuList>
                         <Card className="mr-1">
                             <NavigationMenuLink asChild className={navigationMenuTriggerStyle() + ' !text-foreground'}>
-                                <Link to={profile ? "/dashboard" : '#'}><img className="h-7 mr-1" src='/dashboard/logo.svg' /> {t("nezha")}</Link>
+                                <Link to="/"><img className="h-7 mr-1" src='/dashboard/logo.svg' /> {t("nezha")}</Link>
                             </NavigationMenuLink>
                         </Card>
+
 
                         {
                             profile && (
