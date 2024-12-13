@@ -63,7 +63,7 @@ export default function Header() {
                         <Card className="mr-1">
                             <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                                 {/* 无论登录与否，始终返回到前台页面 */}
-                                <Link to="https://vps.jovegg.com">
+                                <Link to={window.location.origin}>
                                     <img className="h-7 mr-1" src="/dashboard/logo.svg" alt="logo" />
                                     {t("nezha")}
                                 </Link>
