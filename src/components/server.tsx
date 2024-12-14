@@ -51,9 +51,13 @@ const serverFormSchema = z.object({
 
 export const ServerCard: React.FC<ServerCardProps> = ({ data, mutate }) => {
     const { t } = useTranslation()
+
     const form = useForm<z.infer<typeof serverFormSchema>>({
         resolver: zodResolver(serverFormSchema),
-        defaultValues: data,
+        defaultValues: {
+            ...data,
+            note: data.note || `UUID: ${data.uuid}`, // 自动填充 UUID 到 note
+        },
         resetOptions: {
             keepDefaultValues: false,
         },
@@ -122,7 +126,6 @@ export const ServerCard: React.FC<ServerCardProps> = ({ data, mutate }) => {
                                                     {...field}
                                                     value={conv.arrToStr(field.value || [])}
                                                     onChange={(e) => {
-                                                        console.log(field.value)
                                                         const arr = conv
                                                             .strToArr(e.target.value)
                                                             .map(Number)
