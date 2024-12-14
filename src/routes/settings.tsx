@@ -64,7 +64,7 @@ export default function SettingsPage() {
     }, [error])
 
     useEffect(() => {
-        ;(async () => {
+        ; (async () => {
             try {
                 const c = await getSettings()
                 setConfig(c)
@@ -78,20 +78,20 @@ export default function SettingsPage() {
         resolver: zodResolver(settingFormSchema),
         defaultValues: config
             ? {
-                  ...config,
-                  site_name: config.site_name || "",
-                  user_template:
-                      config.user_template ||
-                      Object.keys(config.frontend_templates.filter((t) => !t.is_admin) || {})[0] ||
-                      "user-dist",
-              }
+                ...config,
+                site_name: config.site_name || "",
+                user_template:
+                    config.user_template ||
+                    Object.keys(config.frontend_templates.filter((t) => !t.is_admin) || {})[0] ||
+                    "user-dist",
+            }
             : {
-                  ip_change_notification_group_id: 0,
-                  cover: 1,
-                  site_name: "",
-                  language: "",
-                  user_template: "user-dist",
-              },
+                ip_change_notification_group_id: 0,
+                cover: 1,
+                site_name: "",
+                language: "",
+                user_template: "user-dist",
+            },
         resetOptions: {
             keepDefaultValues: false,
         },
@@ -178,6 +178,76 @@ export default function SettingsPage() {
                                                 const template = config?.frontend_templates?.find(
                                                     (t) => t.path === value,
                                                 )
+                                                if (template) {
+                                                    form.setValue("user_template", template.path)
+                                                }
+                                            }}
+                                        >
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder={t("SelectTheme")} />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                {(
+                                                    config?.frontend_templates.filter(
+                                                        (t) => !t.is_admin,
+                                                    ) || []
+                                                ).map((template) => (
+                                                    <div key={template.path}>
+                                                        <SelectItem value={template.path}>
+                                                            <div className="flex flex-col items-start gap-1">
+                                                                <div className="font-medium">
+                                                                    {template.name}
+                                                                </div>
+                                                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                                                    <span>
+                                                                        {t("Author")}:{" "}
+                                                                        {template.author}
+                                                                    </span>
+                                                                    {!template.is_official ? (
+                                                                        <span className="px-1.5 py-0.5 rounded-md bg-red-100 text-red-800 text-xs">
+                                                                            {t("Community")}
+                                                                        </span>
+                                                                    ) : (
+                                                                        <span className="px-1.5 py-0.5 rounded-md bg-blue-100 text-blue-800 text-xs">
+                                                                            {t("Official")}
+                                                                        </span>
+                                                                    )}
+                                                                </div>
+                                                            </div>
+                                                        </SelectItem>
+                                                        <div className="px-8 py-1">
+                                                            <a
+                                                                href={template.repository}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="text-sm text-blue-600 hover:text-blue-800 hover:underline"
+                                                            >
+                                                                {template.repository}
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </FormControl>
+                                    <FormMessage />
+                                    {!config?.frontend_templates?.find(
+                                        (t) => t.path === field.value,
+                                    )?.is_official && (
+                                            <div className="mt-2 text-sm text-yellow-700 dark:text-yellow-200 bg-yellow-100 dark:bg-yellow-900 border border-yellow-200 dark:border-yellow-700 rounded-md p-2">
+                                                <div className="font-medium text-lg mb-1">
+                                                    {t("CommunityThemeWarning")}
+                                                </div>
+                                                <div className="text-yellow-700 dark:text-yellow-200">
+                                                    {t("CommunityThemeDescription")}
+                                                </div>
+                                            </div>
+                                        )}
+                                </FormItem>
+                            )}
+                        />
                                                 if (template) {
                                                     form.setValue(
                                                         "user_template",

@@ -1,6 +1,6 @@
-import i18next from "i18next"
+import i18n from "@/lib/i18n"
 
 export const triggerModes: Record<number, string> = {
-    0: i18next.t("Always"),
-    1: i18next.t("Once"),
+    0: i18n.t("Always"),
+    1: i18n.t("Once"),
 }

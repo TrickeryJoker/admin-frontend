@@ -1,4 +1,4 @@
-import i18next from "i18next"
+import i18n from "@/lib/i18n"
 
 export const serviceTypes: Record<number, string> = {
     1: "HTTP GET",
@@ -7,6 +7,6 @@ export const serviceTypes: Record<number, string> = {
 }
 
 export const serviceCoverageTypes: Record<number, string> = {
-    0: i18next.t("Coverages.Excludes"),
-    1: i18next.t("Coverages.Only"),
+    0: i18n.t("Coverages.Excludes"),
+    1: i18n.t("Coverages.Only"),
 }
