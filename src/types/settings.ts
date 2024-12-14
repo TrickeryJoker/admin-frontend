@@ -1,8 +1,8 @@
-import i18next from "i18next"
+import i18n from "@/lib/i18n"
 
 export const settingCoverageTypes: Record<number, string> = {
-    1: i18next.t("Coverages.Excludes"),
-    2: i18next.t("Coverages.Only"),
+    1: i18n.t("Coverages.Excludes"),
+    2: i18n.t("Coverages.Only"),
 }
 
 export const nezhaLang: Record<string, string> = {
@@ -12,7 +12,7 @@ export const nezhaLang: Record<string, string> = {
 }
 
 export const wafBlockReasons: Record<number, string> = {
-    1: i18next.t("LoginFailed"),
-    2: i18next.t("BruteForceAttackingToken"),
-    3: i18next.t("BruteForceAttackingAgentSecret"),
+    1: i18n.t("LoginFailed"),
+    2: i18n.t("BruteForceAttackingToken"),
+    3: i18n.t("BruteForceAttackingAgentSecret"),
 }
