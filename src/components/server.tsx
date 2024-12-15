@@ -149,7 +149,7 @@ export const ServerCard: React.FC<ServerCardProps> = ({ data, mutate }) => {
                                                         onCheckedChange={field.onChange}
                                                     />
                                                     <Label className="text-sm">
-                                                        {t("Enable") + t("DDNS")}
+                                                        {t("EnableDDNS")}
                                                     </Label>
                                                 </div>
                                             </FormControl>
