@@ -3,7 +3,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import useSetting from "@/hooks/useSetting"
 import i18n from "@/lib/i18n"
-import { useCallback, useEffect } from "react"
+import { InjectContext } from "@/lib/inject"
+import { useEffect } from "react"
 import { useTranslation } from "react-i18next"
 import { Outlet } from "react-router-dom"
 
@@ -13,15 +14,13 @@ export default function Root() {
 
     useEffect(() => {
         document.title = settingData?.site_name || "Interstellar"
-    }, [settingData])
+    }, [settingData?.site_name])
 
-    const InjectContext = useCallback((content: string) => {
-        document.getElementById("nezha-custom-code")?.remove()
-        const tempDiv = document.createElement("div")
-        tempDiv.id = "nezha-custom-code"
-        tempDiv.innerHTML = content
-        document.body.appendChild(tempDiv)
-    }, [])
+    useEffect(() => {
+        if (settingData?.custom_code_dashboard) {
+            InjectContext(settingData?.custom_code_dashboard)
+        }
+    }, [settingData?.custom_code_dashboard])
 
     if (error) {
         throw error
@@ -35,12 +34,8 @@ export default function Root() {
         i18n.changeLanguage(settingData?.language)
     }
 
-    if (settingData?.custom_code_dashboard) {
-        InjectContext(settingData?.custom_code_dashboard)
-    }
-
     return (
-        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
             <section className="text-sm mx-auto h-full flex flex-col justify-between">
                 <div>
                     <Header />
