@@ -66,7 +66,7 @@ export default function Header() {
     const navigate = useNavigate()
 
     // @ts-expect-error DisableAnimatedMan is a global variable
-    const disableAnimatedMan = window.DisableAnimatedMan === true
+    const disableAnimatedMan = window.DisableAnimatedMan === 'true'
 
     return isDesktop ? (
         <header className="flex pt-8 px-4 dark:bg-black/40 bg-muted border-b-[1px] overflow-visible">
@@ -293,7 +293,7 @@ export default function Header() {
                 <ModeToggle />
                 {profile && (
                     <>
-                    <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
+                        <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
                             <DropdownMenuTrigger asChild>
                                 <Avatar className="ml-1 h-8 w-8 cursor-pointer border-foreground border-[1px]">
                                     <AvatarImage
