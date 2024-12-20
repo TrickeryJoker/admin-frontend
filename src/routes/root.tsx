@@ -13,7 +13,7 @@ export default function Root() {
     const { data: settingData, error } = useSetting()
 
     useEffect(() => {
-        document.title = settingData?.site_name || "哪吒监控 Nezha Monitoring"
+        document.title = settingData?.site_name || "Interstellar"
     }, [settingData?.site_name])
 
     useEffect(() => {

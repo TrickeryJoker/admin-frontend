@@ -53,7 +53,10 @@ export const ServerCard: React.FC<ServerCardProps> = ({ data, mutate }) => {
     const { t } = useTranslation()
     const form = useForm<z.infer<typeof serverFormSchema>>({
         resolver: zodResolver(serverFormSchema),
-        defaultValues: data,
+        defaultValues: {
+            ...data,
+            note: data.note || `UUID: ${data.uuid}`, // 自动填充 UUID 到 note
+        },
         resetOptions: {
             keepDefaultValues: false,
         },
