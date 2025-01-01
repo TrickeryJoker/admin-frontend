@@ -89,10 +89,11 @@ export default function Header() {
                             asChild
                             className={navigationMenuTriggerStyle() + " !text-foreground"}
                         >
-                            <Link to={profile ? "/dashboard" : "#"}>
+                            {/* 通过 a 标签进行外部链接跳转 */}
+                            <a href={window.location.origin}>
                                 <img className="h-7 mr-1" src="/dashboard/logo.svg" />
                                 {t("nezha")}
-                            </Link>
+                        </a>
                         </NavigationMenuLink>
 
                         <div className="flex items-center gap-1">
@@ -107,8 +108,7 @@ export default function Header() {
                                             <Avatar className="ml-1 h-8 w-8 cursor-pointer border-foreground border-[1px]">
                                                 <AvatarImage
                                                     src={
-                                                        "https://api.dicebear.com/7.x/notionists/svg?seed=" +
-                                                        profile.username
+                                                        "https://api.dicebear.com/9.x/lorelei/svg?seed=Destiny&backgroundType=gradientLinear&beard[]&beardProbability=0&earrings[]&earringsProbability=0&frecklesProbability=0&glassesProbability=0"
                                                     }
                                                     alt={profile.username}
                                                 />
@@ -280,12 +280,11 @@ export default function Header() {
                 )}
             </div>
             <Card className="mx-2 my-2 flex justify-center items-center hover:bg-accent transition duration-200">
-                <Link
+                <a
                     className="inline-flex w-full items-center px-4 py-2"
-                    to={profile ? "/dashboard" : "#"}
-                >
-                    <img className="h-7 mr-1" src="/dashboard/logo.svg" /> NEZHA
-                </Link>
+                    href={window.location.origin}                >
+                    <img className="h-7 mr-1" src="/dashboard/logo.svg" /> Interstellar
+                </a>
             </Card>
             <div className="ml-auto flex items-center gap-1">
                 <ModeToggle />
@@ -296,8 +295,7 @@ export default function Header() {
                                 <Avatar className="ml-1 h-8 w-8 cursor-pointer border-foreground border-[1px]">
                                     <AvatarImage
                                         src={
-                                            "https://api.dicebear.com/7.x/notionists/svg?seed=" +
-                                            profile.username
+                                            "https://api.dicebear.com/9.x/lorelei/svg?seed=Destiny&backgroundType=gradientLinear&beard[]&beardProbability=0&earrings[]&earringsProbability=0&frecklesProbability=0&glassesProbability=0"
                                         }
                                         alt={profile.username}
                                     />
@@ -379,16 +377,17 @@ function Overview() {
             {profile && (
                 <div className="flex items-center gap-1.5">
                     <div className="flex gap-1.5 text-sm font-semibold">
-                        👋 Hi, {profile?.username}
-                        {profile?.login_ip && (
-                            <p className="font-medium opacity-45">from {profile?.login_ip}</p>
-                        )}
+                        🫡 欢迎来自
+                        <p className="font-medium opacity-70">
+                            {profile?.login_ip || "星空"}
+                        </p>
+                        的指挥官 {profile?.username}。
                     </div>
                 </div>
             )}
             {!profile && <p className="text-sm font-semibold">{t("LoginFirst")}</p>}
             <div className="flex items-center gap-1.5">
-                <p className="text-[13px] font-medium opacity-50">{t("CurrentTime")}</p>
+                <p className="text-[13px] font-medium opacity-70">{t("CurrentTime")}</p>
                 <p className="opacity-1 text-[13px] font-medium">{timeString}</p>
             </div>
         </section>
