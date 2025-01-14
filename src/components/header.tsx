@@ -116,9 +116,7 @@ export default function Header() {
                                             <Avatar className="ml-1 h-8 w-8 cursor-pointer border-foreground border-[1px]">
                                                 <AvatarImage
                                                     src={
-                                                        "https://api.dicebear.com/7.x/notionists/svg?seed=" +
-                                                        profile.username
-                                                    }
+                                                        "https://api.dicebear.com/9.x/lorelei/svg?seed=Destiny&backgroundType=gradientLinear&beard[]&beardProbability=0&earrings[]&earringsProbability=0&frecklesProbability=0&glassesProbability=0"}
                                                     alt={profile.username}
                                                 />
                                                 <AvatarFallback>{profile.username}</AvatarFallback>
@@ -310,8 +308,7 @@ export default function Header() {
                                 <Avatar className="ml-1 h-8 w-8 cursor-pointer border-foreground border-[1px]">
                                     <AvatarImage
                                         src={
-                                            "https://api.dicebear.com/7.x/notionists/svg?seed=" +
-                                            profile.username
+                                            "https://api.dicebear.com/9.x/lorelei/svg?seed=Destiny&backgroundType=gradientLinear&beard[]&beardProbability=0&earrings[]&earringsProbability=0&frecklesProbability=0&glassesProbability=0"
                                         }
                                         alt={profile.username}
                                     />
@@ -393,16 +390,17 @@ function Overview() {
             {profile && (
                 <div className="flex items-center gap-1.5">
                     <div className="flex gap-1.5 text-sm font-semibold">
-                        👋 Hi, {profile?.username}
-                        {profile?.login_ip && (
-                            <p className="font-medium opacity-45">from {profile?.login_ip}</p>
-                        )}
+                        🫡 欢迎来自
+                        <p className="font-medium opacity-70">
+                            {profile?.login_ip || "星空"}
+                        </p>
+                        的指挥官 {profile?.username}。
                     </div>
                 </div>
             )}
             {!profile && <p className="text-sm font-semibold">{t("LoginFirst")}</p>}
             <div className="flex items-center gap-1.5">
-                <p className="text-[13px] font-medium opacity-50">{t("CurrentTime")}</p>
+                <p className="text-[13px] font-medium opacity-70">{t("CurrentTime")}</p>
                 <p className="opacity-1 text-[13px] font-medium">{timeString}</p>
             </div>
         </section>
