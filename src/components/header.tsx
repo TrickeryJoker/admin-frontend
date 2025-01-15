@@ -91,10 +91,11 @@ export default function Header() {
                                 " !text-foreground hover:opacity-60 transition-opacity"
                             }
                         >
-                            <Link to={profile ? "/dashboard" : "#"}>
+                            {/* 通过 a 标签进行外部链接跳转 */}
+                            <a href={window.location.origin}>
                                 <img className="h-7 mr-1" src="/dashboard/logo.svg" />
                                 {t("nezha")}
-                            </Link>
+                            </a>
                         </NavigationMenuLink>
 
                         <div className="flex items-center gap-1">
@@ -286,12 +287,13 @@ export default function Header() {
                     </Drawer>
                 )}
             </div>
-            <Link
+            <a
                 className="mx-2 my-2 inline-flex w-full items-center"
-                to={profile ? "/dashboard" : "#"}
+                href={profile ? `${window.location.origin}/dashboard` : "#"}
             >
-                <img className="h-7 mr-1" src="/dashboard/logo.svg" /> {t("nezha")}
-            </Link>
+                <img className="h-7 mr-1" src="/dashboard/logo.svg" alt="logo" />
+                {t("nezha")}
+            </a>
             <div className="ml-auto flex items-center gap-1">
                 <a
                     href={"/"}
@@ -361,7 +363,8 @@ export default function Header() {
 
 // https://github.com/streamich/react-use/blob/master/src/useInterval.ts
 const useInterval = (callback: () => void, delay?: number | null) => {
-    const savedCallback = useRef<() => void>(() => {})
+    const savedCallback = useRef<() => void>(() => {
+    })
     useEffect(() => {
         savedCallback.current = callback
     })
