@@ -6,6 +6,8 @@ import { HeaderButtonGroup } from "@/components/header-button-group"
 import { InstallCommandsMenu } from "@/components/install-commands"
 import { NoteMenu } from "@/components/note-menu"
 import { ServerCard } from "@/components/server"
+import { ServerConfigCard } from "@/components/server-config"
+import { ServerConfigCardBatch } from "@/components/server-config-batch"
 import { TerminalButton } from "@/components/terminal"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
@@ -19,7 +21,7 @@ import {
 import { IconButton } from "@/components/xui/icon-button"
 import { useServer } from "@/hooks/useServer"
 import { joinIP } from "@/lib/utils"
-import { ModelForceUpdateResponse, ModelServer as Server } from "@/types"
+import { ModelServerTaskResponse, ModelServer as Server } from "@/types"
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { useEffect, useMemo } from "react"
 import { useTranslation } from "react-i18next"
@@ -143,6 +145,7 @@ export default function ServerPage() {
                         <>
                             <TerminalButton id={s.id} />
                             <ServerCard mutate={mutate} data={s} />
+                            <ServerConfigCard sid={[s.id]} variant="outline" />
                         </>
                     </ActionButtonGroup>
                 )
@@ -185,7 +188,7 @@ export default function ServerPage() {
                                 return
                             }
 
-                            let resp: ModelForceUpdateResponse = {}
+                            let resp: ModelServerTaskResponse = {}
                             try {
                                 resp = await forceUpdateServer(id)
                             } catch (e) {
@@ -209,6 +212,10 @@ export default function ServerPage() {
                                         : ""),
                             })
                         }}
+                    />
+                    <ServerConfigCardBatch
+                        sid={selectedRows.map((r) => r.original.id)}
+                        className="shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] bg-yellow-600 text-white hover:bg-yellow-500 dark:hover:bg-yellow-700 rounded-lg"
                     />
                     <InstallCommandsMenu className="shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] bg-blue-700 text-white hover:bg-blue-600 dark:hover:bg-blue-800 rounded-lg" />
                 </HeaderButtonGroup>

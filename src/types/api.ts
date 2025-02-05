@@ -99,12 +99,6 @@ export interface GithubComNezhahqNezhaModelCommonResponseGithubComNezhahqNezhaMo
     success: boolean
 }
 
-export interface GithubComNezhahqNezhaModelCommonResponseModelForceUpdateResponse {
-    data: ModelForceUpdateResponse
-    error: string
-    success: boolean
-}
-
 export interface GithubComNezhahqNezhaModelCommonResponseModelLoginResponse {
     data: ModelLoginResponse
     error: string
@@ -117,8 +111,20 @@ export interface GithubComNezhahqNezhaModelCommonResponseModelProfile {
     success: boolean
 }
 
+export interface GithubComNezhahqNezhaModelCommonResponseModelServerTaskResponse {
+    data: ModelServerTaskResponse
+    error: string
+    success: boolean
+}
+
 export interface GithubComNezhahqNezhaModelCommonResponseModelServiceResponse {
     data: ModelServiceResponse
+    error: string
+    success: boolean
+}
+
+export interface GithubComNezhahqNezhaModelCommonResponseString {
+    data: string
     error: string
     success: boolean
 }
@@ -203,6 +209,8 @@ export interface ModelConfig {
     enable_ip_change_notification: boolean
     /** 通知信息IP不打码 */
     enable_plain_ip_in_notification: boolean
+    /** 强制要求认证 */
+    force_auth: boolean
     /** 特定服务器IP（多个服务器用逗号分隔） */
     ignored_ip_notification: string
     /** [ServerID] -> bool(值为true代表当前ServerID在特定服务器列表内） */
@@ -328,12 +336,6 @@ export interface ModelDDNSProfile {
     webhook_url: string
 }
 
-export interface ModelForceUpdateResponse {
-    failure?: number[]
-    offline?: number[]
-    success?: number[]
-}
-
 export interface ModelFrontendTemplate {
     author: string
     is_admin: boolean
@@ -411,6 +413,7 @@ export interface ModelNAT {
 
 export interface ModelNATForm {
     domain: string
+    enabled: boolean
     host: string
     /** @minLength 1 */
     name: string
@@ -560,11 +563,17 @@ export interface ModelServer {
     name: string
     /** 管理员可见备注 */
     note: string
+    override_ddns_domains?: Record<string, string[]>
     /** 公开备注 */
     public_note: string
     state: ModelHostState
     updated_at: string
     uuid: string
+}
+
+export interface ModelServerConfigForm {
+    config: string
+    servers: number[]
 }
 
 export interface ModelServerForm {
@@ -582,6 +591,7 @@ export interface ModelServerForm {
     name: string
     /** 管理员可见备注 */
     note?: string
+    override_ddns_domains?: Record<string, string[]>
     /** 公开备注 */
     public_note?: string
 }
@@ -602,6 +612,12 @@ export interface ModelServerGroupForm {
 export interface ModelServerGroupResponseItem {
     group: ModelServerGroup
     servers: number[]
+}
+
+export interface ModelServerTaskResponse {
+    failure?: number[]
+    offline?: number[]
+    success?: number[]
 }
 
 export interface ModelService {
